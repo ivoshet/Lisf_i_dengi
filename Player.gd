@@ -1,4 +1,7 @@
 extends Area2D
+# обозначаем какие сигналы будут от объекта
+signal pickup
+signal hurtd
 
 export (int) var speed = 350
 var velocity = Vector2()
@@ -30,3 +33,31 @@ func _process(delta):
 #	ограничиваем движение игрока
 	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, 0, screensize.y)
+#	выбор анимации в зависимости от направления
+	if velocity.length() > 0:
+		get_node("AnimatedSprite").animation = "run"
+		get_node("AnimatedSprite").flip_h = velocity.x < 0
+	else:
+		$AnimatedSprite.animation = "idle"
+		
+#	задать страртовые позиции
+func start(pos):
+	set_process(true)
+	position = pos
+	$AnimatedSprite.animation = "idle"
+	
+# задать состояние столкновения в т.ч уничтожение процесса для данного объекта
+func die():
+	$AnimatedSprite.animation = "hurt"
+#	уничтожить процесс
+	set_process(false)
+	
+# обработка столкновения с другиму area2d
+func _on_Player_area_entered(area):
+	if area.is_in_group("coins"):
+#		что такое пикап() не знаю
+		area.pickup()
+		emit_signal("pickup")
+	if area.is_in_group("obstacles"):
+		emit_signal("hurt")
+		die()
