@@ -1,10 +1,10 @@
 extends Area2D
 # обозначаем какие сигналы будут от объекта
 signal pickup
-signal hurtd
+signal hurt
 
 export (int) var speed = 350
-var velocity = Vector2()
+var velocity : Vector2
 var screensize = Vector2(480, 720)
 
 func _ready():

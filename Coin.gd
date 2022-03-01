@@ -1,4 +1,5 @@
 extends Area2D
+var screensize : Vector2
 
 func _ready():
 	pass 
