@@ -39,6 +39,7 @@ func spawn_coins():
 		c.screensize = screensize
 		c.position = Vector2(rand_range(0, screensize.x),
 		rand_range(0, screensize.y))
+	$LevelSound.play()
 
 # проверяем каждый кадр не пора ли начать новый уровень		
 func _process(delta):
@@ -60,6 +61,7 @@ func _on_Player_hurt():
 func _on_Player_pickup():
 	score += 1
 	$HUD.update_score(score)
+	$CoinSound.play()
 
 func game_over():
 	playing = false
@@ -68,3 +70,5 @@ func game_over():
 		coin.queue_free()
 	$HUD.show_game_over()
 	$Player.die()
+	$EndSound.play()
+	
