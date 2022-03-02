@@ -38,6 +38,13 @@ func spawn_coins():
 		c.screensize = screensize
 		c.position = Vector2(rand_range(0, screensize.x),
 		rand_range(0, screensize.y))
+
+# проверяем каждый кадр не пора ли начать новый уровень		
+func _process(delta):
+	if playing and $CoinContainer.get_child_count() == 0:
+		level += 1
+		time_left += 5
+		spawn_coins()
 	
 	
 
