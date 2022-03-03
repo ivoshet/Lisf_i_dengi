@@ -72,10 +72,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -91.0
 custom_fonts/font = SubResource( 5 )
-text = "START"
+text = "CLICK ME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
+[connection signal="button_down" from="StartButton" to="." method="_on_StartButton_button_down"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
