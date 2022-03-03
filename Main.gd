@@ -2,6 +2,7 @@ extends Node
 
 export (PackedScene) var Coin
 export (PackedScene) var Powerup
+export (PackedScene) var Cactus
 export (int) var playtime = 30
 
 var level : int
@@ -30,6 +31,7 @@ func new_game():
 	$Player.show()
 	$GameTimer.start()
 	spawn_coins()
+	spawn_kaktus()
 	$HUD.update_score(score)
 	$HUD.update_timer(time_left)
 	
@@ -41,6 +43,14 @@ func spawn_coins():
 		c.position = Vector2(rand_range(0, screensize.x),
 		rand_range(0, screensize.y))
 	$LevelSound.play()
+	
+# появление кактуса
+func spawn_kaktus():
+#	for i in range(1 + level):
+		var ck = Cactus.instance()
+		$CactusContainer.add_child(ck)
+		ck.screensize = screensize
+		ck.position = Vector2(rand_range(0, screensize.x), rand_range(0, screensize.y))
 
 # проверяем каждый кадр не пора ли начать новый уровень		
 func _process(delta):
@@ -49,6 +59,7 @@ func _process(delta):
 #		добавляем 5 секунд на каждом уровне
 		time_left += 5
 		spawn_coins()
+		spawn_kaktus()
 		$PowerupTimer.wait_time = rand_range(5, 10)
 		$PowerupTimer.start()
 	
@@ -77,6 +88,8 @@ func game_over():
 	$GameTimer.stop()
 	for coin in $CoinContainer.get_children():
 		coin.queue_free()
+	for cactus in $CactusContainer.get_children():
+		cactus.queue_free()
 	$HUD.show_game_over()
 	$Player.die()
 	$EndSound.play()
@@ -86,6 +99,4 @@ func _on_PowerupTimer_timeout():
 	add_child(p)
 	p.screensize = screensize
 	p.position = Vector2(rand_range(0, screensize.x), rand_range(0, screensize.y))
-	
-	
 	
