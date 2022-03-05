@@ -37,6 +37,7 @@ func show_game_over():
 #		start_game()
 
 func start_game():
+#	show_message("Game Over")
 	$StartButton.hide()
 	$MessageLabel.hide()
 #	испускаем сигнал, что игра началась

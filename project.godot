@@ -11,7 +11,8 @@ config_version=4
 [application]
 
 config/name="Fox  and coins"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Balalaika.tscn"
+boot_splash/image="res://logo_godot.png"
 config/icon="res://icon.png"
 
 [display]

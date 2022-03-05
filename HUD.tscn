@@ -33,7 +33,8 @@ anchor_bottom = 0.5
 margin_top = -36.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 2 )
-text = "Game Over"
+text = "Coin Dash!
+"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -53,13 +54,11 @@ __meta__ = {
 margin_right = 460.0
 margin_bottom = 72.0
 custom_fonts/font = SubResource( 3 )
-text = "256"
 
 [node name="TimeLabel" type="Label" parent="MarginContainer"]
 margin_right = 460.0
 margin_bottom = 72.0
 custom_fonts/font = SubResource( 4 )
-text = "36"
 align = 2
 
 [node name="MessageTimer" type="Timer" parent="."]
